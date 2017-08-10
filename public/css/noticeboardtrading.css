@@ -1,0 +1,15 @@
+/**
+ * @author Webwiz
+ * @link http://about.me/oladejoezekiel
+*/
+
+.site-footer {
+	background: #999;
+	color: #000;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 30px;
+	padding-right: 30px;
+	margin-top: 50px;
+	border-top: 5px inset cornflowerblue;
+}
