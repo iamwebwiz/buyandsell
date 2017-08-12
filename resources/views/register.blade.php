@@ -11,7 +11,7 @@ Registration
 <section class="container">
 	<div class="row">
 		<ol class="breadcrumb">
-			<li><a href="/">Home</a></li>
+			<li><a href="{{ route('home') }}">Home</a></li>
 			<li class="active">Register</li>
 		</ol>
 		<h1 class="thin">Registration</h1>

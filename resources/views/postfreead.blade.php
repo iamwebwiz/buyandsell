@@ -21,7 +21,7 @@ Post a free Ad
 			<div class="panel panel-success">
 				<div class="panel-body">
 					<p class="alert alert-info">Post a free advertisement on Noticeboard Trading platform</p>
-					<form method="post" action="{{ route('postFreeAd') }}" enctype="multipart/form-data">
+					<form method="post" action="{{ route('postfreead') }}" enctype="multipart/form-data">
 						<div class="form-group">
 							<label for="firstname">First name</label>
 							<input type="text" name="ad_poster" placeholder="Your name" class="form-control" required>
