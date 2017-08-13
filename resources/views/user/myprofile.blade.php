@@ -6,6 +6,8 @@ My profile
 
 @section('body')
 
+@include('user.navbar')
+
 <section class="container">
 	<h1 class="thin">My profile</h1>
 </section>

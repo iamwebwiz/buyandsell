@@ -11,6 +11,8 @@
 |
 */
 
+use App\User;
+
 Route::get('/', function(){
 	return view('home');
 })->name('home');
@@ -64,3 +66,13 @@ Route::get('dashboard', [
 Route::get('profile', function() {
     return view('user.myprofile');
 })->name('profile');
+
+Route::get('logout', [
+	'uses' => 'UserController@getLogout',
+	'as' => 'logout'
+]);
+
+Route::get('postnewad', function(){
+	$user = Auth::User();
+	return view('user.postnewad', compact('user'));
+})->name('postnewad');
