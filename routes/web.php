@@ -76,3 +76,8 @@ Route::get('postnewad', function(){
 	$user = Auth::User();
 	return view('user.postnewad', compact('user'));
 })->name('postnewad');
+
+Route::get('postedads', function() {
+    $user = Auth::user();
+    return view('user.postedads', compact('user'));
+})->name('postedads');
