@@ -16,18 +16,27 @@ Posted Ads
 			<hr>
 			<table class="table table-hover">
 				<thead>
-					<td></td>
-					<td>Title</td>
-					<td>Location</td>
-					<td>Phone</td>
-					<td>Action</td>
+					<th></th>
+					<th>Title</th>
+					<th>Location</th>
+					<th>Phone</th>
+					<th>Action</th>
 				</thead>
 				<tbody>
-					<td></td>
-					<td>Flight booking ticket</td>
-					<td>Magboro, Lagos</td>
-					<td>08163947019</td>
-					<td><a href="#" class="btn btn-danger">Delete</a></td>
+					<tr>
+						<td></td>
+						<td>Flight booking script</td>
+						<td>Magboro, Lagos</td>
+						<td>08163947019</td>
+						<td><a href="#" class="btn btn-danger">Delete</a></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>Wedding booking script</td>
+						<td>Magboro, Lagos</td>
+						<td>08163947019</td>
+						<td><a href="#" class="btn btn-danger">Delete</a></td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
