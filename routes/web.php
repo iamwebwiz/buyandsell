@@ -12,6 +12,7 @@
 */
 
 use App\User;
+use App\UserAds;
 
 Route::get('/', function(){
 	return view('home');
@@ -30,11 +31,11 @@ Route::get('postfreead', function(){
 })->name('postfreead');
 
 Route::get('contact', function(){
-	return view('welcome');
+	return view('home');
 })->name('contact');
 
 Route::get('about', function(){
-	return view('welcome');
+	return view('home');
 })->name('about');
 
 Route::post('postfreead', [
@@ -77,7 +78,6 @@ Route::get('postnewad', function(){
 	return view('user.postnewad', compact('user'));
 })->name('postnewad');
 
-Route::get('postedads', function() {
-    $user = Auth::user();
-    return view('user.postedads', compact('user'));
-})->name('postedads');
+Route::post('post-user-ad', ['uses' => 'AdsController@postUserAd', 'as' => 'post-user-ad']);
+
+Route::get('postedads', 'AdsController@showUserAdverts');

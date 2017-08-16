@@ -1,4 +1,4 @@
-	<footer id="footer" class="top-space">
+	<footer id="footer" class="top-space nav navbar-fixed-bottom">
 
 		<div class="footer2">
 			<div class="container">
@@ -18,7 +18,7 @@
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="text-right">
-								Copyright &copy; 2017, Noticeboard | Developed by <a href="https://iamwebwiz.github.io">Oladejo Ezekiel (Webwiz)</a>
+								Copyright &copy; 2017, Noticeboard Trading | Developed by <a href="https://iamwebwiz.github.io">Oladejo Ezekiel (Webwiz)</a>
 							</p>
 						</div>
 					</div>
