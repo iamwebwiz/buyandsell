@@ -80,4 +80,4 @@ Route::get('postnewad', function(){
 
 Route::post('post-user-ad', ['uses' => 'AdsController@postUserAd', 'as' => 'post-user-ad']);
 
-Route::get('postedads', 'AdsController@showUserAdverts');
+Route::get('postedads', 'AdsController@showUserAdverts')->name('postedads');
