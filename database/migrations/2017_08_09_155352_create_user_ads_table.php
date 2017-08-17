@@ -22,8 +22,8 @@ class CreateUserAdsTable extends Migration
             $table->text('shortdesc');
             $table->string('location');
             $table->text('phone');
-            $table->string('image_name');
-            $table->binary('image');
+            $table->string('image_name')->nullable();
+            $table->binary('image')->nullable();
             $table->integer('user_id');
         });
     }

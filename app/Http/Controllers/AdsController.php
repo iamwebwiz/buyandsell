@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\FreeAds;
 use App\Http\Requests\UploadRequest;
 use App\UserAds;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\File;
@@ -64,11 +66,47 @@ class AdsController extends Controller {
 		return new Response($image, 200);
 	}
 
-	public function createAd(Request $request){
+	public function postUserAd(Request $request){
+		$user = Auth::user();
+		$this->validate($request, [
+			'title' => 'required',
+			'shortdesc' => 'max:100',
+			'location' => 'required'
+		]);
+
+		$image = $request->file('image');
+		$filename = $user->firstname . '-' . $request['location'] . '.jpg';
+		if ($image){
+			Storage::disk('local')->put($filename, File::get($image));
+		}
+
+		$title = $request['title'];
+		$price = $request['price'];
+		$longdesc = $request['longdesc'];
+		$image_name = $filename;
+		$image = $image;
+		$shortdesc = $request['shortdesc'];
+		$location = $request['location'];
+		$phone = $request['phone'];
+
 		$advert = new UserAds;
 		// store values in db
+		$advert->title = $title;
+		$advert->price = $price;
+		$advert->image_name = $filename;
+		$advert->image = $image;
+		$advert->longdesc = $longdesc;
+		$advert->shortdesc = $shortdesc;
+		$advert->location = $location;
+		$advert->phone = $phone;
 
 		$request->user()->ads()->save($advert);
+
 		return redirect()->route('dashboard');
+	}
+
+	public function showUserAdverts(){
+		$user = Auth::user();
+		return view('user.postedads')->with(['user' => $user]);
 	}
 }
