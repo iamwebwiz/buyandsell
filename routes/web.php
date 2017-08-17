@@ -38,9 +38,10 @@ Route::get('about', function(){
 	return view('home');
 })->name('about');
 
-Route::post('postfreead', [
-	'uses' => 'AdsController@postFreeAd',
-	'as' => 'postfreead'
+
+Route::post('/postFreeAd', [
+	'uses' => 'AdsController@SaveAd',
+	'as' => 'postFreeAd'
 ]);
 
 Route::post('register', [
@@ -53,8 +54,9 @@ Route::post('login', [
 	'as' => 'signin'
 ]);
 
-Route::get('freeadsimages/{filename}', [
-	'uses' => 'AdsController@postFreeAd',
+
+Route::get('/freeadsimages/{filename}', [
+	'uses' => 'AdsController@SaveAd',
 	'as' => 'ad.image'
 ]);
 

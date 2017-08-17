@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\FreeAds;
+use App\Http\Requests\UploadRequest;
 use App\UserAds;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -13,27 +14,26 @@ use Illuminate\Support\Facades\Storage;
 
 class AdsController extends Controller {
 
-	public function postFreeAd(Request $request){
-		$this->validate($request, [
-			'ad_poster' => 'required|min:3|max:100',
-			'ad_title' => 'required',
-			'ad_price' => 'required',
-			'ad_shortdesc' => 'max:100',
-			'ad_location' => 'required'
-		]);
+	public function SaveAd(UploadRequest $request)
+    {
 
-		$ad_image = $request->file('ad_image');
-		$filename = $request['ad_poster'] . '-' . $request['ad_location'] . '.jpg';
-		if ($ad_image){
-			Storage::disk('local')->put($filename, File::get($ad_image));
-		}
+        if ($request->hasFile('ad_image'))  //check if file is an image
+        {
+
+            $ad_image = $request->file('ad_image'); //then fetch the image
+            $imagename = $request['ad_poster'].time().'.'.$request->ad_image->getClientOriginalExtension(); //append current time and extension
+            $ad_image = $request->ad_image->move(public_path('Adimages'), $imagename);
+
+        }else{
+            return 'No file selected';
+        }
+
+
 
 		$title = $request['ad_title'];
 		$firstname = $request['ad_poster'];
 		$price = $request['ad_price'];
-		$image_name = $filename;
-		$image = $ad_image;
-		$longdesc = $request['ad_longdesc'];
+        $longdesc = $request['ad_longdesc'];
 		$shortdesc = $request['ad_shortdesc'];
 		$location = $request['ad_location'];
 		$phone = $request['ad_phone'];
@@ -43,14 +43,14 @@ class AdsController extends Controller {
 		$newFreeAd->title = $title;
 		$newFreeAd->firstname = $firstname;
 		$newFreeAd->price = $price;
-		$newFreeAd->image_name = $filename;
+		//$newFreeAd->image_name = $filename;
 		$newFreeAd->image = $ad_image;
 		$newFreeAd->longdesc = $longdesc;
 		$newFreeAd->shortdesc = $shortdesc;
 		$newFreeAd->location = $location;
 		$newFreeAd->phone = $phone;
 
-		if ($newFreeAd->save()){
+	if ($newFreeAd->save()){
 			// Successfully posted advert
 			return view('guest', compact('newFreeAd'));
 		}
@@ -58,6 +58,7 @@ class AdsController extends Controller {
 			// Unable to post advert
 			return redirect()->back();
 		}
+
 	}
 
 	public function getAdImage($filename){
