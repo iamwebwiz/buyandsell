@@ -11,7 +11,8 @@ class UserController extends Controller
 {
 
 	public function getDashboard(){
-		return view('dashboard');
+		$user = Auth::User();
+		return view('dashboard')->with('user', $user);
 	}
 
 	public function postRegister(Request $request){
@@ -53,7 +54,7 @@ class UserController extends Controller
 	}
 
 	public function getLogout(){
-		Auth::logout($user);
+		Auth::logout();
 		return redirect()->route('home');
 	}
 }
