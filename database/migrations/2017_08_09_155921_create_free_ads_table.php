@@ -15,7 +15,6 @@ class CreateFreeAdsTable extends Migration
     {
         Schema::create('free_ads', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
             $table->string('firstname');
             $table->string('title');
             $table->bigInteger('price');
@@ -23,7 +22,8 @@ class CreateFreeAdsTable extends Migration
             $table->text('shortdesc');
             $table->string('location');
             $table->text('phone');
-            $table->binary('image');
+            $table->binary('image')->nullable();
+            $table->timestamps();
         });
     }
 

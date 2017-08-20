@@ -1,4 +1,4 @@
-	<footer id="footer" class="top-space nav">
+	<footer id="footer" class="top-margin">
 
 		<div class="footer2">
 			<div class="container">
@@ -37,7 +37,6 @@
 	<script src="{{ URL::to('js/headroom.min.js') }}"></script>
 	<script src="{{ URL::to('/js/html5shiv.js') }}"></script>
 	<script src="{{ URL::to('js/respond.min.js') }}"></script>
-	<script src="{{ URL::to('js/template.js') }}"></script>
 	<script src="{{ URL::to('js/bootstrap.min.js') }}"></script>
 	<!-- <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52d8f8d75dfc85f4"></script> -->
 </body>

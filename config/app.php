@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost/trading'),
+    'url' => env('APP_URL', 'http://localhost/trading/'),
 
     /*
     |--------------------------------------------------------------------------

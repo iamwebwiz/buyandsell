@@ -27,5 +27,6 @@
 
 	<script src="{{ URL::to('js/jquery.min.js') }}"></script>
 	<script src="{{ URL::to('js/jQuery.headroom.min.js') }}"></script>
+	<script src="{{ URL::to('js/template.js') }}"></script>
 </head>
-<body class="home">
+<body>

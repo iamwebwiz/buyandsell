@@ -15,16 +15,15 @@ class CreateUserAdsTable extends Migration
     {
         Schema::create('user_ads', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
             $table->string('title');
             $table->bigInteger('price');
             $table->text('longdesc');
             $table->text('shortdesc');
             $table->string('location');
             $table->text('phone');
-            $table->string('image_name')->nullable();
             $table->binary('image')->nullable();
             $table->integer('user_id');
+            $table->timestamps();
         });
     }
 

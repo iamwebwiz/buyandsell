@@ -52,7 +52,7 @@ Post a free Ad
 						</div>
 						<div class="form-group">
 							<label for="ad_image">Image</label>
-							<input type="file" name="ad_image" class="form-control" enctype="multipart/form-data">
+							<input type="file" name="ad_image" class="form-control" enctype="multipart/form-data" required>
 						</div>
 						<div class="form-group">
 							<button class="btn btn-success submitbtn" type="submit">Submit Ad !</button>
