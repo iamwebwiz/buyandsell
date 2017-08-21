@@ -67,3 +67,5 @@ Post a free Ad
 </div>
 
 @endsection
+
+@include('partials.footer')

@@ -18,10 +18,10 @@ class CreateUserAdsTable extends Migration
             $table->string('title');
             $table->bigInteger('price');
             $table->text('longdesc');
-            $table->text('shortdesc');
+            $table->text('shortdesc')->nullable();
             $table->string('location');
             $table->text('phone');
-            $table->binary('image')->nullable();
+            $table->string('image')->nullable();
             $table->integer('user_id');
             $table->timestamps();
         });

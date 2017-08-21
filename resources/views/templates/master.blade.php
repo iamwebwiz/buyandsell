@@ -2,4 +2,4 @@
 
 @yield('body')
 
-@include('partials.footer')
+@include('user.footer')
