@@ -39,9 +39,9 @@ Route::get('about', function(){
 })->name('about');
 
 
-Route::post('/postFreeAd', [
+Route::post('postfreead', [
 	'uses' => 'AdsController@SaveAd',
-	'as' => 'postFreeAd'
+	'as' => 'postfreead'
 ]);
 
 Route::post('register', [
@@ -82,4 +82,20 @@ Route::get('postnewad', function(){
 
 Route::post('post-user-ad', ['uses' => 'AdsController@postUserAd', 'as' => 'post-user-ad']);
 
-Route::get('postedads', 'AdsController@showUserAdverts')->name('postedads');
+Route::get('postedads', [
+	'uses' => 'AdsController@showUserAdverts'
+])->name('postedads');
+
+Route::get('delete-advert/{ad_id}', [
+	'uses' => 'AdsController@deleteAdvert',
+	'as' => 'ad.delete',
+	'middleware' => 'auth'
+]);
+
+Route::get('edit-advert/{ad_id}', [
+	'uses' => 'AdsController@editAdvert',
+	'as' => 'ad.edit',
+	'middleware' => 'auth'
+]);
+
+Route::post('editad/{ad_id}', ['uses' => 'AdsController@postEditAdvert', 'as' => 'editad']);

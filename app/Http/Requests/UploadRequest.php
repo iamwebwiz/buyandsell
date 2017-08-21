@@ -30,7 +30,7 @@ class UploadRequest extends FormRequest
             'ad_price' => 'required',
             'ad_shortdesc' => 'max:100',
             'ad_location' => 'required',
-            'ad_image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
+            'ad_image' => 'required|image|mimes:jpg,png,jpeg,gif,svg,bmp|max:2048'
         ];
 
     }
