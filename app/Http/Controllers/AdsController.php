@@ -21,15 +21,14 @@ class AdsController extends Controller {
         {
 
             $ad_image = $request->file('ad_image'); //then fetch the image
-            $imagename = $request['ad_poster'].time().'.'.$request->ad_image->getClientOriginalExtension(); //append current time and extension
-            $ad_image = $request->ad_image->move(public_path('Adimages'), $imagename);
 
+            //append current time and extension
+            $imagename = $request['ad_poster'].time().'.'.$request->ad_image->getClientOriginalExtension();
+            $ad_image = $request->ad_image->move(public_path('Adimages'), $imagename);
         }
         else{
             return 'No file selected';
         }
-
-
 
 		$title = $request['ad_title'];
 		$firstname = $request['ad_poster'];
@@ -45,7 +44,7 @@ class AdsController extends Controller {
 		$newFreeAd->firstname = $firstname;
 		$newFreeAd->price = $price;
 		//$newFreeAd->image_name = $filename;
-		$newFreeAd->image = $ad_image;
+		$newFreeAd->image = $imagename;
 		$newFreeAd->longdesc = $longdesc;
 		$newFreeAd->shortdesc = $shortdesc;
 		$newFreeAd->location = $location;
@@ -73,16 +72,17 @@ class AdsController extends Controller {
 			'ad_title' => 'required',
 			'ad_shortdesc' => 'max:100',
 			'ad_longdesc' => 'required',
-			'ad_image' => 'required|image|mimes:jpg,png,jpeg,gif,svg,bmp|max:2048'
+			'ad_image' => 'image|mimes:jpg,png,jpeg,gif,svg,bmp|max:2048'
 		]);
 
 		if ($request->hasFile('ad_image'))  //check if file is an image
         {
 
             $ad_image = $request->file('ad_image'); //then fetch the image
-            $imagename = $user->username.time().'.'.$request->ad_image->getClientOriginalExtension(); //append current time and extension
-            $ad_image = $request->ad_image->move(public_path('Adimages'), $imagename);
 
+            //append current time and extension
+            $imagename = $user->username.time().'.'.$request->ad_image->getClientOriginalExtension();
+            $ad_image = $request->ad_image->move(public_path('Adimages'), $imagename);
         }
         else {
             return 'No file selected';
@@ -91,8 +91,8 @@ class AdsController extends Controller {
 		$title = $request['ad_title'];
 		$price = $request['ad_price'];
 		$longdesc = $request['ad_longdesc'];
-		$image_name = $imagename;
-		$image = $ad_image;
+		// $image_name = $imagename;
+		$image = $imagename;
 		$shortdesc = $request['ad_shortdesc'];
 		$location = $request['ad_location'];
 		$phone = $request['ad_phone'];
@@ -120,6 +120,11 @@ class AdsController extends Controller {
 		$adverts = $user->ads;
 		// $posts = Post::orderBy('created_at', 'desc')->get();
 		return view('user.postedads')->with(['user' => $user, 'adverts' => $adverts]);
+	}
+
+	public function getAllAdverts(){
+		$ads = UserAds::orderBy('created_at', 'desc')->get();
+		return view('home', ['ads' => $ads]);
 	}
 
 	public function deleteAdvert($advert_id){

@@ -34,8 +34,8 @@ Posted Ads
 								<td class="text-center">{{ $advert->location }}</td>
 								<td class="text-center">{{ $advert->phone }}</td>
 								<td class="text-center">
-									<a href="{{ route('ad.edit', ['ad_id' => $advert->id]) }}" class="btn btn-info btn-sm">Edit</a>
-									<a href="{{ route('ad.delete', ['ad_id' => $advert->id]) }}" id="deletePost" class="btn btn-danger btn-sm">Delete</a>
+									<a href="{{ route('ad.edit', ['ad_id' => $advert->id]) }}" class="btn btn-info btn-xs">Edit</a>
+									<a href="{{ route('ad.delete', ['ad_id' => $advert->id]) }}" id="deletePost" class="btn btn-danger btn-xs">Delete</a>
 								</td>
 							</tr>
 						@endforeach
