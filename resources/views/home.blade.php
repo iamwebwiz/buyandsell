@@ -26,22 +26,22 @@ Noticeboard Trading
 		<h2 class="thin text-center">Recently placed Advertisements</h2>
 		<hr>
 		<div class="row">
-			@foreach($ads as $ad)
+		</div>
+
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<div id="ad-image">
-								<img src="{{ URL::to('Adimages/'.$ad->image) }}">
+
 							</div>
 							<div id="smalldetail">
-								<div id="ad-title">{{ $ad->title }}</div>
-								<div id="ad-price">N{{ $ad->price }}</div>
+
 								<button class="btn btn-success submitbtn"><i class="fa fa-phone"></i> Show phone</button>
 							</div>
 						</div>
 					</div>
 				</div>
-			@endforeach
+
 		</div>
 	</div>
 	<!-- /Intro-->
