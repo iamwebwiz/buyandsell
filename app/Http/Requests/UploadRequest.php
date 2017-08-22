@@ -25,12 +25,13 @@ class UploadRequest extends FormRequest
     {
         return [
 
-            'ad_poster' => 'required|min:3|max:100',
+
             'ad_title' => 'required',
             'ad_price' => 'required',
             'ad_shortdesc' => 'max:100',
+            'ad_longdesc' => 'max:100',
             'ad_location' => 'required',
-            'ad_image' => 'image|mimes:jpg,png,jpeg,gif,svg,bmp|max:2048'
+            'ad_image' => 'image|mimes:jpg,png,jpeg,gif,svg,bmp|max:3048'
         ];
 
     }

@@ -14,7 +14,9 @@
 use App\User;
 use App\UserAds;
 
-Route::get('/', 'AdsController@getAllAdverts')->name('home');
+Route::get('/', function(){
+	return view('home');
+})->name('home');
 
 Route::get('login', function(){
 	return view('login');
@@ -37,9 +39,9 @@ Route::get('about', function(){
 })->name('about');
 
 
-Route::post('postfreead', [
+Route::post('/postFreeAd', [
 	'uses' => 'AdsController@SaveAd',
-	'as' => 'postfreead'
+	'as' => 'postFreeAd'
 ]);
 
 Route::post('register', [
@@ -78,22 +80,14 @@ Route::get('postnewad', function(){
 	return view('user.postnewad', compact('user'));
 })->name('postnewad');
 
-Route::post('post-user-ad', ['uses' => 'AdsController@postUserAd', 'as' => 'post-user-ad']);
-
-Route::get('postedads', [
-	'uses' => 'AdsController@showUserAdverts'
-])->name('postedads');
-
-Route::get('delete-advert/{ad_id}', [
-	'uses' => 'AdsController@deleteAdvert',
-	'as' => 'ad.delete',
-	'middleware' => 'auth'
+Route::post('post-user-ad', [
+    'uses' => 'AdsController@SaveAd',
+    'as' => 'post-user-ad',
+    'middleware' => 'auth'
 ]);
 
-Route::get('edit-advert/{ad_id}', [
-	'uses' => 'AdsController@editAdvert',
-	'as' => 'ad.edit',
-	'middleware' => 'auth'
-]);
+//Route::post('post-user-ad', ['uses' => 'AdsController@SaveAd', 'as' => 'post-user-ad']);
 
-Route::post('editad/{ad_id}', ['uses' => 'AdsController@postEditAdvert', 'as' => 'editad']);
+//Route::post('post-user-ad', ['uses' => 'AdsController@SaveAd']);
+
+Route::get('postedads', 'AdsController@showUserAdverts')->name('postedads');

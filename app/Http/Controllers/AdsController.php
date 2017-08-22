@@ -20,46 +20,56 @@ class AdsController extends Controller {
         if ($request->hasFile('ad_image'))  //check if file is an image
         {
 
-            $ad_image = $request->file('ad_image'); //then fetch the image
 
-            //append current time and extension
-            $imagename = $request['ad_poster'].time().'.'.$request->ad_image->getClientOriginalExtension();
-            $ad_image = $request->ad_image->move(public_path('Adimages'), $imagename);
-        }
-        else{
+           $adimage = $request->file('ad_image');
+
+
+            $currentUser  = \Auth::user();
+            $image     = $adimage;
+            $filename     = 'ad.' . $image->getClientOriginalExtension();
+            $save_path    = storage_path() . '/users/id/' . $currentUser->id . '/ad';
+            $public_path  = '/images/' . $currentUser->id . '/ad/' . $filename;
+
+            File::makeDirectory($save_path, $mode = 0755, true, true);
+            $result = Storage::disk('public')->put($save_path, $filename);//save to the public directory
+
+
+
+        } else {
             return 'No file selected';
         }
 
-		$title = $request['ad_title'];
-		$firstname = $request['ad_poster'];
-		$price = $request['ad_price'];
-        $longdesc = $request['ad_longdesc'];
-		$shortdesc = $request['ad_shortdesc'];
-		$location = $request['ad_location'];
-		$phone = $request['ad_phone'];
+         $title = $request['ad_title'];
+         $firstname = $currentUser->name;
+          $price = $request['ad_price'];
+         $longdesc = $request['ad_longdesc'];
+          $shortdesc = $request['ad_shortdesc'];
+         $location = $request['ad_location'];
+         $phone = $request['ad_phone'];
 
-		$newFreeAd = new FreeAds();
+         $newFreeAd = new FreeAds();
 
-		$newFreeAd->title = $title;
-		$newFreeAd->firstname = $firstname;
-		$newFreeAd->price = $price;
-		//$newFreeAd->image_name = $filename;
-		$newFreeAd->image = $imagename;
-		$newFreeAd->longdesc = $longdesc;
-		$newFreeAd->shortdesc = $shortdesc;
-		$newFreeAd->location = $location;
-		$newFreeAd->phone = $phone;
+         $newFreeAd->title = $title;
+         $newFreeAd->firstname = $firstname;
+         $newFreeAd->price = $price;
+        $newFreeAd->image = $public_path;  //the public path to the image
+         $newFreeAd->longdesc = $longdesc;
+        $newFreeAd->shortdesc = $shortdesc;
+          $newFreeAd->location = $location;
+         $newFreeAd->phone = $phone;
 
-		if ($newFreeAd->save()){
-			// Successfully posted advert
-			return view('guest', compact('newFreeAd'));
-		}
-		else {
-			// Unable to post advert
-			return redirect()->back();
-		}
+         if ($newFreeAd->save()){
+         // Successfully posted advert
+         echo "Your Ad would would be live"; // return dashboard with flash message
+         }
+         else {
+          // Unable to post advert
+         //return redirect()->back();
+             echo "There was a problem posting your ad, pls try again in a few mins";
+         }
 
-	}
+    }
+
 
 	public function getAdImage($filename){
 		$image = Storage::disk('local')->get($filename);
